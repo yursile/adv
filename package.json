@@ -1,0 +1,22 @@
+{
+  "name": "ad-ydgf",
+  "version": "1.0.0",
+  "description": "the loading with advertisment",
+  "main": "adv.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yursile/adv.git"
+  },
+  "keywords": [
+    "adv"
+  ],
+  "author": "yursile",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yursile/adv/issues"
+  },
+  "homepage": "https://github.com/yursile/adv#readme"
+}
