@@ -33,9 +33,11 @@
 	function getAD(callback){
 		var _this = this;
 		console.log(this.option.turn);
-		jsonp({
+		$.ajax({
+		  type: "GET",
 		  url: "http://10.16.10.63/adgtr/",
 		  data:_this.option,
+		  dataType: "jsonp",
 		  success: function(data){
 		  	var img  = data[0].resource.file;
 		  	if(typeof callback ==="function"){
@@ -85,64 +87,57 @@
 		}
 
 		var pv_ajax = {
+			  type: "GET",
 			  url: "http://i.go.sohu.com/count/v",
+			  dataType: "jsonp",
 			  data:pvData,
 			  success: function(data){
+			  	
+			  	// console.log("pv_ajax");
+			  	// console.log(data);
 			  }
 		}
 
 		var av_ajax = {
+			 type: "GET",
 			  url: "http://i.go.sohu.com/count/av",
+			  dataType: "jsonp",
 			  data:pvData,
 			  success: function(data){
+
+			  	// console.log("av_ajax");
+			  	// console.log(data);
 			  }
 		}
 
 		var ad_ajax = {
+			 type: "GET",
 			  url: "http://imp.optaim.com/201409/8e1630f4158f49845c16b015b90d34bf.php",
+			  dataType: "jsonp",
 			  data:ad_plusData,
 			  success: function(data){
+			  	// console.log("ad_ajax");
+			  	// console.log(data);
 			  }
 		}
 
 		if(data == null){
-			jsonp({
+			$.ajax({
+				 type: "GET",
 				  url: "http://i.go.sohu.com/count/v",
+				  dataType: "jsonp",
 				  data:{apid:"beans_"+_this.option.Itemspaceid},
 				  success: function(data){
+				  
+				  	// console.log(data);
 				  }
 			});
 		}else{
 			
-			jsonp(pv_ajax);
-			jsonp(av_ajax);
-			jsonp(ad_ajax);
+			$.ajax(pv_ajax);
+			$.ajax(av_ajax);
+			$.ajax(ad_ajax);
 		}	
-	}
-
-	function jsonp(option){
-		var script = document.createElement("script");
-		option.callback=option.callback||rdfn();
-		script.src = option.url+"?"+obj2arg(option.data)+"&callback="+option.callback;
-		window[option.callback] = function(data){
-			option.success(data);
-			window[option.callback] = null;
-		}
-		setTimeout(function(){
-			document.body.appendChild(script)
-		},0);
-	}
-
-	function obj2arg(option){
-		var args = "";
-		for(var i in option){
-			args += i+"="+option[i]+"&";
-		}
-		return args.slice(0,this.length-1);
-	}
-
-	function rdfn(){
-		return "jsonp"+Math.ceil(Math.random()*100000);
 	}
 
 	ADUtil.prototype.genrateTurn  = genrateTurn;
@@ -150,7 +145,6 @@
 	ADUtil.prototype.submitAD = submitAD;
 
 	window.ADUtil = ADUtil;
-	if(typeof exports!=="undefined") {
-		exports.ADUtil = ADUtil;
-	}
+	exports.resLoader = resLoader;
+	export {ADUtil as default}
 })(window);
