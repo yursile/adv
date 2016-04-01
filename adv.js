@@ -151,6 +151,6 @@
 
 	window.ADUtil = ADUtil;
 	if(typeof exports!=="undefined") {
-		exports.ADUtil = ADUtil;
+		module.exports = ADUtil;
 	}
 })(window);
