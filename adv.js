@@ -27,18 +27,17 @@
 
 		this.option.turn = (localStorage.turn++)%maxPic+1; 
 		
-		// console.log(this.option.turn);
+		console.log(this.option.turn);
 	}
 	// genrateTurn();
 	function getAD(callback){
 		var _this = this;
-		// console.log(this.option.turn);
+		console.log(this.option.turn);
 		jsonp({
 		  url: "http://10.16.10.63/adgtr/",
 		  data:_this.option,
 		  success: function(data){
-		  	var img = data[0].resource)?data[0].resource.file:"http://images.sohu.com/bill/a2016/0330/CgpExFb7pByAUWNjAAGdd3oUQvE065640x1136.jpg";
-		  	// var img  = data[0].resource.file;
+		  	var img  = data[0].resource.file;
 		  	if(typeof callback ==="function"){
 		  		callback(img)
 		  	}else{
