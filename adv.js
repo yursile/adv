@@ -27,12 +27,12 @@
 
 		this.option.turn = (localStorage.turn++)%maxPic+1; 
 		
-		console.log(this.option.turn);
+		// console.log(this.option.turn);
 	}
 	// genrateTurn();
 	function getAD(callback){
 		var _this = this;
-		console.log(this.option.turn);
+		// console.log(this.option.turn);
 		jsonp({
 		  url: "http://10.16.10.63/adgtr/",
 		  data:_this.option,
@@ -127,6 +127,7 @@
 		window[option.callback] = function(data){
 			option.success(data);
 			window[option.callback] = null;
+			document.body.removeChild(script)
 		}
 		setTimeout(function(){
 			document.body.appendChild(script)
