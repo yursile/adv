@@ -27,9 +27,7 @@
 
 		this.option.turn = (localStorage.turn++)%maxPic+1; 
 		
-		// console.log(this.option.turn);
 	}
-	// genrateTurn();
 	function getAD(callback){
 		var _this = this;
 		// console.log(this.option.turn);
