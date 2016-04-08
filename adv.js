@@ -43,17 +43,17 @@
 		  	}else{
 		  		document.getElementsByClassName("loading")[0].style.cssText = 'background:url('+img+')'+' no-repeat;'+"background-size:100%";	
 		  	}  
-		    submitAD(data,"dd");
+		    submitAD(data,_this.option.turn);
 		  }
 		});
 	}
-	function submitAD(addata){
+	function submitAD(addata,turn){
 		var reg = /\/c\/(\d{5})\//;
 		var _this = this;
 		var data = addata[0];
 		var pvData = {
 			aid:data.adid,	
-			apid:"beans_"+data.adid,
+			apid:"beans_"+_this.option.Itemspaceid,
 			pgid:"pgid"+new Date().getTime(),
 			at:"1",
 			ax:"0",
@@ -74,13 +74,13 @@
 			rsln:"640*1136",
 			sf:"false",
 			supplyid:"4",
-			turn:"1"
+			turn:turn
 		}
 
 		var ad_plusData = {
 			_dc:"1451030323800",
 			a:"99",
-			apid:"beans_12294",
+			apid:"beans_"+_this.option.Itemspaceid,
 			impid:data.impression_id,
 		}
 
@@ -113,10 +113,31 @@
 				  }
 			});
 		}else{
-			
+			//第三方上报
+			if(addata[0].resource.imp){
+				var arr = addata[0].resource.imp.split("|");
+				for(var i in arr){
+					arr[i] = arr[i].slice(0,arr[i].indexOf(";"))
+					if(arr[i].indexOf("optaim")>0){
+						jsonp({
+							url:arr[i],
+							data:{
+								_dc:new Date().getTime(),
+								apid:"beans_"+_this.option.Itemspaceid,
+								impid:data.impression_id
+							},
+							success: function(data){
+			 				}
+						});
+					}else{
+						var img = new Image();
+						img.src=arr[i];
+					}
+				}			
+			}
 			jsonp(pv_ajax);
 			jsonp(av_ajax);
-			jsonp(ad_ajax);
+			
 		}	
 	}
 
