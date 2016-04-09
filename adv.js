@@ -41,7 +41,7 @@
 		  	}else{
 		  		document.getElementsByClassName("loading")[0].style.cssText = 'background:url('+img+')'+' no-repeat;'+"background-size:100%";	
 		  	}  
-		    this.submitAD(data,_this.option.turn);
+		    _this.submitAD(data,_this.option.turn);
 		  }
 		});
 	}
