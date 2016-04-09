@@ -1,6 +1,6 @@
 {
   "name": "ad-ydgf",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "the loading with advertisment",
   "main": "adv.js",
   "scripts": {
